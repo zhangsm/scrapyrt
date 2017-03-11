@@ -267,7 +267,9 @@ class CrawlManager(object):
         try:
             req = Request(url, **kwargs)
         except (TypeError, ValueError) as e:
-            message = "Error while creating Scrapy Request, {}".format(e.message)
+            # message = "Error while creating Scrapy Request, {}".format(e.message)
+            msg = "Error while creating Scrapy Request, {}"
+            message = msg.format(str(e))
             raise Error('400', message=message)
 
         req.dont_filter = True

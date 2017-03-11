@@ -64,7 +64,8 @@ class ScrapyrtFileLogObserver(log.FileLogObserver):
         message = eventDict.get('message')
         if message:
             eventDict['message'] = tuple(
-                unicode_to_str(x, self.encoding) for x in message)
+                # unicode_to_str(x, self.encoding) for x in message)
+                to_bytes(x, self.encoding) for x in message)
         return eventDict
 
     def emit(self, eventDict):
